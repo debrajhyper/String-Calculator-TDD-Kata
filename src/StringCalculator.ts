@@ -22,7 +22,8 @@ export class StringCalculator {
             throw new Error(`Negative numbers not allowed ${negativeNumbers.join(',')}`);
         }
 
-        return numbersArray.reduce((sum, num) => sum + num, 0);
+        const validNumbers = numbersArray.filter(num => num <= 1000);
+        return validNumbers.reduce((sum, num) => sum + num, 0);
     }
 
     private escapeRegExp(string: string): string {
