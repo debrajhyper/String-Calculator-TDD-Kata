@@ -45,4 +45,16 @@ describe('StringCalculator', () => {
         expect(calculator.add('//;\n1;2\n3;4\n5;6\n7\n8\n9\n10')).toBe(55);
         expect(calculator.add('//;\n1;2\n3;4\n5\n6\n7\n8\n9\n10')).toBe(55);
     });
+
+    test('should throw exception for negative numbers', () => {
+        expect(() => calculator.add('-1')).toThrow('Negative numbers not allowed -1');
+        expect(() => calculator.add('1,-2')).toThrow('Negative numbers not allowed -2');
+        expect(() => calculator.add('1\n-2')).toThrow('Negative numbers not allowed -2');
+    });
+
+    test('should show all negative numbers in exception', () => {
+        expect(() => calculator.add('-1,-2,-3')).toThrow('Negative numbers not allowed -1,-2,-3');
+        expect(() => calculator.add('1,-2,-3')).toThrow('Negative numbers not allowed -2,-3');
+        expect(() => calculator.add('1\n-2\n-3')).toThrow('Negative numbers not allowed -2,-3');
+    });
 });
