@@ -85,6 +85,7 @@ describe('StringCalculator', () => {
         expect(calculator.add('//[>>][<<]\n1>>2<<3')).toBe(6);
         expect(calculator.add('//[123][xyz]\n11234xyz5')).toBe(10);
         expect(calculator.add('//[a1b2c3][d4e5f6]\n1a1b2c32d4e5f63')).toBe(6);
+        expect(calculator.add('//[|][;][%][**][***]\n1|2;3%4**5***6')).toBe(21);
         expect(calculator.add('//[a1b2c3][d4e5f6][g7h8i9]\n1a1b2c32d4e5f63g7h8i94')).toBe(10);
         expect(calculator.add('//[a1b2c3][d4e5f6][g7h8i9][j10k11l12]\n1a1b2c32d4e5f63g7h8i94j10k11l125')).toBe(15);
     });

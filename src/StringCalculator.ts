@@ -13,12 +13,13 @@ export class StringCalculator {
             numberString = numbers.substring(delimiterLineEnd + 1);
 
             const delimiters = this.parseDelimiters(delimiterPart);
-            const escapedDelimiters = delimiters.map(d => this.escapeRegExp(d));
-            delimiter = new RegExp(`[,\n]|${escapedDelimiters.join('|')}`, 'g');
+            const sortedDelimiters = delimiters.sort((a, b) => b.length - a.length);
+            const escapedDelimiters = sortedDelimiters.map(d => this.escapeRegExp(d));
+            delimiter = new RegExp(`${escapedDelimiters.join('|')}|[,\n]`, 'g');
         }
 
         const parts = numberString.split(delimiter).filter(part => part !== '');
-        const numbersArray = parts.map(part => parseInt(part));
+        const numbersArray = parts.map(part => parseInt(part)).filter(num => !isNaN(num));
 
         const negativeNumbers = numbersArray.filter(num => num < 0);
         if (negativeNumbers.length > 0) {
@@ -42,7 +43,9 @@ export class StringCalculator {
                 if (endBracket === -1) break;
 
                 const delimiter = delimiterPart.substring(startBracket + 1, endBracket);
-                delimiters.push(delimiter);
+                if (delimiter.length > 0) {
+                    delimiters.push(delimiter);
+                }
                 currentIndex = endBracket + 1;
             }
 
