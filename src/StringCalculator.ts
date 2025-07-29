@@ -9,12 +9,18 @@ export class StringCalculator {
 
         if (numbers.startsWith('//')) {
             const delimiterLineEnd = numbers.indexOf('\n');
-            const customDelimiter = numbers.substring(2, delimiterLineEnd);
-            delimiter = new RegExp(`[,\n${this.escapeRegExp(customDelimiter)}]`);
+            const delimiterPart = numbers.substring(2, delimiterLineEnd);
             numberString = numbers.substring(delimiterLineEnd + 1);
+
+            if (delimiterPart.startsWith('[') && delimiterPart.endsWith(']')) {
+                const customDelimiter = delimiterPart.slice(1, -1);
+                delimiter = new RegExp(`[,\n]|${this.escapeRegExp(customDelimiter)}`, 'g');
+            } else {
+                delimiter = new RegExp(`[,\n${this.escapeRegExp(delimiterPart)}]`);
+            }
         }
 
-        const parts = numberString.split(delimiter);
+        const parts = numberString.split(delimiter).filter(part => part !== '');
         const numbersArray = parts.map(part => parseInt(part));
 
         const negativeNumbers = numbersArray.filter(num => num < 0);
