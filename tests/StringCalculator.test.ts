@@ -71,4 +71,12 @@ describe('StringCalculator', () => {
         expect(calculator.add('//[abc]\n1abc2abc3')).toBe(6);
         expect(calculator.add('//[a1b2c3]\n1a1b2c32a1b2c33')).toBe(6);
     });
+
+    test('should support multiple delimiters', () => {
+        expect(calculator.add('//[*][%]\n1*2%3')).toBe(6);
+        expect(calculator.add('//[|][;]\n1|2;3')).toBe(6);
+        expect(calculator.add('//[|][;][%]\n1|2;3%4')).toBe(10);
+        expect(calculator.add('//[|][;][%][**]\n1|2;3%4**5')).toBe(15);
+        expect(calculator.add('//[|][;][%][**][***]\n1|2;3%4**5***6')).toBe(21);
+    });
 });
