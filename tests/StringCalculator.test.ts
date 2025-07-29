@@ -30,4 +30,19 @@ describe('StringCalculator', () => {
         expect(calculator.add('1\n2,3')).toBe(6);
         expect(calculator.add('1\n2\n3')).toBe(6);
     });
+
+    test('should support custom delimiters', () => {
+        expect(calculator.add('//;\n1;2')).toBe(3);
+        expect(calculator.add('//|\n1|2|3')).toBe(6);
+        expect(calculator.add('//-\n1-2-3')).toBe(6);
+        expect(calculator.add('//;\n1;2\n3')).toBe(6);
+        expect(calculator.add('//;\n1;2\n3;4;5')).toBe(15);
+        expect(calculator.add('//;\n1;2\n3;4\n5')).toBe(15);
+        expect(calculator.add('//;\n1;2\n3;4\n5;6;7;8;9;10')).toBe(55);
+        expect(calculator.add('//;\n1;2\n3;4\n5;6;7;8;9\n10')).toBe(55);
+        expect(calculator.add('//;\n1;2\n3;4\n5;6;7;8\n9\n10')).toBe(55);
+        expect(calculator.add('//;\n1;2\n3;4\n5;6;7\n8\n9\n10')).toBe(55);
+        expect(calculator.add('//;\n1;2\n3;4\n5;6\n7\n8\n9\n10')).toBe(55);
+        expect(calculator.add('//;\n1;2\n3;4\n5\n6\n7\n8\n9\n10')).toBe(55);
+    });
 });
