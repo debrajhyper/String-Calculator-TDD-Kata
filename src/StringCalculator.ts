@@ -15,7 +15,14 @@ export class StringCalculator {
         }
 
         const parts = numberString.split(delimiter);
-        return parts.reduce((sum, part) => sum + parseInt(part), 0);
+        const numbersArray = parts.map(part => parseInt(part));
+
+        const negativeNumbers = numbersArray.filter(num => num < 0);
+        if (negativeNumbers.length > 0) {
+            throw new Error(`Negative numbers not allowed ${negativeNumbers.join(',')}`);
+        }
+
+        return numbersArray.reduce((sum, num) => sum + num, 0);
     }
 
     private escapeRegExp(string: string): string {
