@@ -10,7 +10,7 @@
     "test": "jest --coverage --watchAll",
     "test:watch": "jest --watch",
     "build": "tsc",
-    "start": "node dist/StringCalculator.js"
+    "start": "npm run build && node dist/StringCalculator.js"
   },
   "keywords": [
     "tdd",

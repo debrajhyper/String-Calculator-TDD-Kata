@@ -97,6 +97,8 @@ console.log(calculator.add('//[;][%]\n1;2%3')); // Output: 6
 │   └── StringCalculator.ts       # Main calculator implementation
 ├── tests/
 │   └── StringCalculator.test.ts  # Test cases
+├── types/
+│   └── StringCalculator.d.ts     # TypeScript type definitions
 ├── jest.config.js                # Jest test configuration
 ├── package.json                  # Project configuration and dependencies
 ├── README.md                     # Project documentation
