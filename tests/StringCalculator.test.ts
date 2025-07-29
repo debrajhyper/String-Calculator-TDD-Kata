@@ -65,4 +65,10 @@ describe('StringCalculator', () => {
         expect(calculator.add('1000\n1001\n2')).toBe(1002);
         expect(calculator.add('//;\n1000;1001;2')).toBe(1002);
     });
+
+    test('should support multi-character delimiters', () => {
+        expect(calculator.add('//[***]\n1***2***3')).toBe(6);
+        expect(calculator.add('//[abc]\n1abc2abc3')).toBe(6);
+        expect(calculator.add('//[a1b2c3]\n1a1b2c32a1b2c33')).toBe(6);
+    });
 });
