@@ -12,7 +12,7 @@
     "build": "tsc",
     "start": "node dist/StringCalculator.js"
   },
-    "keywords": [
+  "keywords": [
     "tdd",
     "kata",
     "string-calculator",
