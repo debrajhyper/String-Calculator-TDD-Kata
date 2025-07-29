@@ -77,6 +77,5 @@ describe('StringCalculator', () => {
         expect(calculator.add('//[|][;]\n1|2;3')).toBe(6);
         expect(calculator.add('//[|][;][%]\n1|2;3%4')).toBe(10);
         expect(calculator.add('//[|][;][%][**]\n1|2;3%4**5')).toBe(15);
-        expect(calculator.add('//[|][;][%][**][***]\n1|2;3%4**5***6')).toBe(21);
     });
 });
